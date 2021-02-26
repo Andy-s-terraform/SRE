@@ -10,11 +10,11 @@ terraform {
 
 provider "aws" {
   region = "eu-west-2"
-  access_key = "AKIAJPK6KBXLETUTOZ4Q"
-  secret_key = "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"
+  access_key = "Acces_Key"
+  secret_key = "Secret_Key"
 }
 
-resource "aws_instance" "my-first-server" {
+resource "aws_instance" "Server_Name" {
   count = 1
   ami           = "ami-08698c6c1186276cc"
   instance_type = "t2.micro"
@@ -27,7 +27,7 @@ resource "aws_instance" "my-first-server" {
 
 resource "null_resource" "copy_execute" {
 
-  connection {
+   connection {
     type     = "winrm"
     user     = "Administrator"
     password = "var.admin_password"
@@ -35,23 +35,23 @@ resource "null_resource" "copy_execute" {
   }
    
  provisioner "file" {
-    source      = "Install_7zip.sh"
-    destination = "/C:/Windows/System32/"
+    source      = "Install_SNOW.sh"
+    destination = "C:\Program Files"
 
   }
 
  provisioner "remote-exec" {
     inline    = [
-    "sh /C:/Windows/System32/Install_7zip.sh"
+    "sh C:/Program Files/Install_SNOW.sh"
     ]
   }
 
-depends_on = [ aws_instance.my-first-server ]
+depends_on = [ aws_instance.Server_Name ]
 
 }
 
 
-resource "aws_vpc" "first_vpc" {
+resource "aws_vpc" "VPC_Name" {
   cidr_block = "172.16.0.0/16"
   tags = {
     Name = "production"
@@ -60,7 +60,7 @@ resource "aws_vpc" "first_vpc" {
 }
 
 resource "aws_subnet" "subnet-1" {
-  vpc_id            = aws_vpc.first_vpc.id
+  vpc_id            = aws_vpc.VPC_Name.id
   cidr_block        = "172.16.10.0/24"
   availability_zone = "eu-west-2a"
 
