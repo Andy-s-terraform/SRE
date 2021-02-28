@@ -6,7 +6,7 @@ Mkdir "C:\Program Files\Snow Software\Inventory\Agent"
 
 cd /C:/Program Files/Snow Software/Inventory/Agent/
 
-msiexec /i https://s3.eu-west-2.amazonaws.com/dwp-cloudservices-ts-snowcloud-binaries/DWP_snowagent-6.3.0.x64.msi 
+msiexec /i https://File_location.msi 
 
 #Creating directory for the crypto keys
 
